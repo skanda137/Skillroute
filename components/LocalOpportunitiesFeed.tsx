@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { suggestOpportunities } from '../services/geminiService';
 import { StudentProfile, LocalOpportunity } from '../types';
+import { useTranslation } from './TranslationContext';
 
 interface LocalOpportunitiesFeedProps {
   profile: StudentProfile;
@@ -10,11 +11,12 @@ interface LocalOpportunitiesFeedProps {
 }
 
 export const LocalOpportunitiesFeed: React.FC<LocalOpportunitiesFeedProps> = ({ profile, cachedData, onUpdate }) => {
+  const { t } = useTranslation();
   const [opportunities, setOpportunities] = useState<LocalOpportunity[]>(cachedData || []);
   const [loading, setLoading] = useState(!cachedData);
 
   useEffect(() => {
-    if (cachedData) return; // Prevent reload if we already have data
+    if (cachedData) return;
 
     const fetchOpps = async () => {
       setLoading(true);
@@ -34,8 +36,8 @@ export const LocalOpportunitiesFeed: React.FC<LocalOpportunitiesFeedProps> = ({ 
   return (
     <div className="animate-in fade-in duration-700">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold mb-2">Local Opportunities</h2>
-        <p className="text-zinc-500">Real-world projects and roles matched to your location and accessibility constraints.</p>
+        <h2 className="text-3xl font-bold mb-2">{t('localOpps')}</h2>
+        <p className="text-zinc-500">Real-world projects matched to {profile.location}.</p>
       </div>
 
       {loading ? (
@@ -55,22 +57,22 @@ export const LocalOpportunitiesFeed: React.FC<LocalOpportunitiesFeedProps> = ({ 
                   </span>
                   <div className="text-xs font-medium text-emerald-500 uppercase">{opp.type}</div>
                 </div>
-                <div className="text-xs font-bold px-2 py-1 rounded bg-zinc-800 text-zinc-400 group-hover:text-emerald-500 transition-colors">
+                <div className="text-xs font-bold px-2 py-1 rounded bg-zinc-800 text-zinc-400">
                   {opp.matchScore}% Match
                 </div>
               </div>
 
               <h3 className="font-bold text-lg mb-1">{opp.title}</h3>
-              <div className="text-sm text-zinc-400 mb-4">{opp.company} • {opp.location}</div>
+              <div className="text-sm text-zinc-400 mb-4">{opp.company}</div>
               
               <p className="text-sm text-zinc-500 flex-1 mb-6 line-clamp-3">
                 {opp.description}
               </p>
 
               <div className="flex items-center justify-between mt-auto">
-                <button className="text-sm font-semibold text-emerald-500 hover:underline">View Details</button>
+                <button className="text-sm font-semibold text-emerald-500 hover:underline">{t('viewDetails')}</button>
                 <button className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-xs rounded-lg transition-colors">
-                  Apply Now
+                  {t('applyNow')}
                 </button>
               </div>
             </div>

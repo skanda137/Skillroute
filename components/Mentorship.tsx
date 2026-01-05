@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { suggestMentors, getMentorAdvice } from '../services/geminiService';
 import { StudentProfile } from '../types';
+import { useTranslation } from './TranslationContext';
 
 interface Mentor {
   name: string;
@@ -18,6 +19,7 @@ interface MentorshipProps {
 }
 
 export const Mentorship: React.FC<MentorshipProps> = ({ profile, cachedData, onUpdate }) => {
+  const { t } = useTranslation();
   const [mentors, setMentors] = useState<Mentor[]>(cachedData || []);
   const [loading, setLoading] = useState(!cachedData);
   const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
@@ -65,8 +67,8 @@ export const Mentorship: React.FC<MentorshipProps> = ({ profile, cachedData, onU
   return (
     <div className="animate-in fade-in duration-700">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold mb-2">Mentorship Network</h2>
-        <p className="text-zinc-500">Connect with local experts and guides who can help you navigate your unique career path.</p>
+        <h2 className="text-3xl font-bold mb-2">{t('mentorship')}</h2>
+        <p className="text-zinc-500">Connect with local experts who can help you navigate your unique career path.</p>
       </div>
 
       {loading ? (
@@ -98,7 +100,7 @@ export const Mentorship: React.FC<MentorshipProps> = ({ profile, cachedData, onU
                   }}
                   className="px-4 py-2 bg-zinc-800 hover:bg-emerald-500 hover:text-black font-bold text-xs rounded-xl transition-all"
                 >
-                  Start Chat
+                  {t('startChat')}
                 </button>
               </div>
             </div>
@@ -116,7 +118,6 @@ export const Mentorship: React.FC<MentorshipProps> = ({ profile, cachedData, onU
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="w-full max-w-2xl bg-[#09090b] border border-white/10 rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col h-[80vh]"
             >
-              {/* Header */}
               <div className="p-6 border-b border-white/10 bg-zinc-900/50 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-xl">👤</div>
@@ -128,12 +129,11 @@ export const Mentorship: React.FC<MentorshipProps> = ({ profile, cachedData, onU
                 <button onClick={() => setSelectedMentor(null)} className="p-2 text-zinc-500 hover:text-white transition-colors">✕</button>
               </div>
 
-              {/* Messages */}
               <div className="flex-1 overflow-y-auto p-6 space-y-4">
                 {chatHistory.length === 0 && (
                   <div className="text-center py-10">
                     <div className="text-4xl mb-4">👋</div>
-                    <p className="text-zinc-400 text-sm">Say hello to {selectedMentor.name} and ask your questions about your career in {profile.location}.</p>
+                    <p className="text-zinc-400 text-sm">Say hello to {selectedMentor.name}!</p>
                   </div>
                 )}
                 {chatHistory.map((msg, i) => (
@@ -147,32 +147,22 @@ export const Mentorship: React.FC<MentorshipProps> = ({ profile, cachedData, onU
                     </div>
                   </div>
                 ))}
-                {isSending && (
-                  <div className="flex justify-start">
-                    <div className="bg-zinc-800/80 px-4 py-3 rounded-2xl flex gap-1">
-                      <div className="w-1.5 h-1.5 bg-zinc-500 rounded-full animate-bounce" />
-                      <div className="w-1.5 h-1.5 bg-zinc-500 rounded-full animate-bounce [animation-delay:0.2s]" />
-                      <div className="w-1.5 h-1.5 bg-zinc-500 rounded-full animate-bounce [animation-delay:0.4s]" />
-                    </div>
-                  </div>
-                )}
               </div>
 
-              {/* Input */}
               <form onSubmit={handleChat} className="p-6 border-t border-white/10 bg-zinc-900/50 flex gap-3">
                 <input 
                   type="text" 
                   value={chatMessage}
                   onChange={e => setChatMessage(e.target.value)}
-                  placeholder="Ask for advice..."
+                  placeholder={t('askAdvice')}
                   className="flex-1 bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
                 />
                 <button 
                   type="submit"
                   disabled={isSending || !chatMessage.trim()}
-                  className="px-6 bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-6 bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm rounded-xl transition-all disabled:opacity-50"
                 >
-                  Send
+                  {t('send')}
                 </button>
               </form>
             </motion.div>
