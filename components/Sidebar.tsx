@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { useTranslation } from './TranslationContext';
+import { useTranslation } from './TranslationContext.tsx';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface SidebarProps {

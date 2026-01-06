@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
-import { suggestOpportunities } from '../services/geminiService';
-import { StudentProfile, LocalOpportunity } from '../types';
-import { useTranslation } from './TranslationContext';
+import { suggestOpportunities } from '../services/geminiService.ts';
+import { StudentProfile, LocalOpportunity } from '../types.ts';
+import { useTranslation } from './TranslationContext.tsx';
 
 interface LocalOpportunitiesFeedProps {
   profile: StudentProfile;

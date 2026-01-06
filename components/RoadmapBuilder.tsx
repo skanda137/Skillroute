@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
-import { generateRoadmap } from '../services/geminiService';
-import { StudentProfile, Roadmap } from '../types';
-import { useTranslation } from './TranslationContext';
+import { generateRoadmap } from '../services/geminiService.ts';
+import { StudentProfile, Roadmap } from '../types.ts';
+import { useTranslation } from './TranslationContext.tsx';
 
 interface RoadmapBuilderProps {
   profile: StudentProfile;

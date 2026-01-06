@@ -1,8 +1,7 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
-import { StudentProfile, Roadmap, LocalOpportunity } from "../types";
+import { StudentProfile, Roadmap, LocalOpportunity } from "../types.ts";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generateRoadmap = async (profile: StudentProfile): Promise<Roadmap> => {
   const response = await ai.models.generateContent({

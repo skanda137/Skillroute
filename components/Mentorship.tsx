@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { suggestMentors, getMentorAdvice } from '../services/geminiService';
-import { StudentProfile } from '../types';
-import { useTranslation } from './TranslationContext';
+import { suggestMentors, getMentorAdvice } from '../services/geminiService.ts';
+import { StudentProfile } from '../types.ts';
+import { useTranslation } from './TranslationContext.tsx';
 
 interface Mentor {
   name: string;

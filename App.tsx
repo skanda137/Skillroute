@@ -1,19 +1,18 @@
-
 import React, { useState, useEffect } from 'react';
-import { Sidebar } from './components/Sidebar';
-import { Header } from './components/Header';
-import { Overview } from './components/Overview';
-import { RoadmapBuilder } from './components/RoadmapBuilder';
-import { LocalOpportunitiesFeed } from './components/LocalOpportunitiesFeed';
-import { Mentorship } from './components/Mentorship';
-import { ProfilePage } from './components/ProfilePage';
-import { AnalysisForm } from './components/AnalysisForm';
-import { LandingPage } from './components/LandingPage';
-import { Auth } from './components/Auth';
-import ScrollToTop from './components/ScrollToTop';
-import TargetCursor from './components/TargetCursor';
-import { TranslationProvider, SupportedLanguage } from './components/TranslationContext';
-import { StudentProfile, Roadmap, LocalOpportunity } from './types';
+import { Sidebar } from './components/Sidebar.tsx';
+import { Header } from './components/Header.tsx';
+import { Overview } from './components/Overview.tsx';
+import { RoadmapBuilder } from './components/RoadmapBuilder.tsx';
+import { LocalOpportunitiesFeed } from './components/LocalOpportunitiesFeed.tsx';
+import { Mentorship } from './components/Mentorship.tsx';
+import { ProfilePage } from './components/ProfilePage.tsx';
+import { AnalysisForm } from './components/AnalysisForm.tsx';
+import { LandingPage } from './components/LandingPage.tsx';
+import { Auth } from './components/Auth.tsx';
+import ScrollToTop from './components/ScrollToTop.tsx';
+import TargetCursor from './components/TargetCursor.tsx';
+import { TranslationProvider, SupportedLanguage } from './components/TranslationContext.tsx';
+import { StudentProfile, Roadmap, LocalOpportunity } from './types.ts';
 
 type ViewState = 'landing' | 'auth' | 'app';
 
