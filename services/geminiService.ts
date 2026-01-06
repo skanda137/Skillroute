@@ -1,9 +1,13 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { StudentProfile, Roadmap, LocalOpportunity } from "../types.ts";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Function to get or create the AI instance safely
+const getAI = () => {
+  return new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+};
 
 export const generateRoadmap = async (profile: StudentProfile): Promise<Roadmap> => {
+  const ai = getAI();
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
     contents: `Generate a detailed career roadmap for a student with the following profile:
@@ -49,6 +53,7 @@ export const generateRoadmap = async (profile: StudentProfile): Promise<Roadmap>
 };
 
 export const suggestOpportunities = async (profile: StudentProfile): Promise<LocalOpportunity[]> => {
+  const ai = getAI();
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
     contents: `Suggest 5 simulated local internships or job opportunities for a student in ${profile.location} based on these skills: ${profile.skills.join(", ")}. 
@@ -78,6 +83,7 @@ export const suggestOpportunities = async (profile: StudentProfile): Promise<Loc
 };
 
 export const getMentorAdvice = async (profile: StudentProfile, mentorName: string, mentorRole: string, question: string) => {
+  const ai = getAI();
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
     contents: `You are acting as ${mentorName}, a ${mentorRole} who mentors students in Tier-2 and Tier-3 cities in India.
@@ -95,6 +101,7 @@ export const getMentorAdvice = async (profile: StudentProfile, mentorName: strin
 };
 
 export const suggestMentors = async (profile: StudentProfile) => {
+  const ai = getAI();
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
     contents: `Suggest 4 local mentor personas for a student in ${profile.location} with interests in ${profile.interests.join(", ")}. 
