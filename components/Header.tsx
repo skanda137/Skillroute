@@ -1,7 +1,6 @@
-
 import React from 'react';
-import { StudentProfile } from '../types';
-import { useTranslation } from './TranslationContext';
+import { StudentProfile } from '../types.ts';
+import { useTranslation } from './TranslationContext.tsx';
 
 interface HeaderProps {
   profile: StudentProfile | null;

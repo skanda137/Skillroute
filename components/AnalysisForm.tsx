@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { StudentProfile } from '../types';
-import { useTranslation, SupportedLanguage } from './TranslationContext';
+import { StudentProfile } from '../types.ts';
+import { useTranslation, SupportedLanguage } from './TranslationContext.tsx';
 
 interface AnalysisFormProps {
   onComplete: (profile: StudentProfile) => void;

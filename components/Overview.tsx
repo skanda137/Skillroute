@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { StudentProfile } from '../types';
-import { useTranslation } from './TranslationContext';
+import { StudentProfile } from '../types.ts';
+import { useTranslation } from './TranslationContext.tsx';
 
 const data = [
   { name: 'Week 1', skills: 20, jobs: 2 },

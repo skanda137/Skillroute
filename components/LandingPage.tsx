@@ -1,9 +1,8 @@
-
 import React, { useMemo, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import BlurText from './BlurText';
-import CurvedLoop from './CurvedLoop';
-import Hyperspeed from './Hyperspeed';
+import BlurText from './BlurText.tsx';
+import CurvedLoop from './CurvedLoop.tsx';
+import Hyperspeed from './Hyperspeed.tsx';
 
 interface LandingPageProps {
   onStart: () => void;
